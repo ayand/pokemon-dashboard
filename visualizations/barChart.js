@@ -1,4 +1,4 @@
-var width = 350;
+var width = 375;
 var padding = 45;
 var types = ['Normal', 'Fire', 'Fighting', 'Water', 'Flying', 'Grass',
     'Poison', 'Electric', 'Ground', 'Psychic', 'Rock', 'Ice', 'Bug', 'Dragon',
@@ -98,6 +98,11 @@ d3.json("pokemon.json", function(data) {
         })
         .attr("fill", function(d) {
             return colorKey[d["type"]]
+            //return "black";
+        })
+        .style("cursor", "pointer")
+        .on("click", function(d) {
+            console.log(d.type);
         })
 
         barGraph.append("g")
