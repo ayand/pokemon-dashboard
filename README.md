@@ -1,6 +1,6 @@
 # Pokémon Dashboard Project
 
-This is a Pokémon project showing visualizations in regards to various trends in Pokémon types using the visualization library D3.js.
+This is a Pokémon project showing visualizations in regards to various trends in Pokémon types and stats using the visualization library D3.js.
 
 The source of the data was converted to a JSON from a CSV file that was acquired from this link:
 
