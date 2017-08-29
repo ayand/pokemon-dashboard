@@ -30,25 +30,25 @@ var colorKey = {
 var legend = d3.select(".legend")
     .append("svg")
     .attr("width", 250)
-    .attr("height", 475)
+    .attr("height", 515)
 
 legend.append("rect")
     .attr("width", 250)
-    .attr("height", 475)
+    .attr("height", 515)
     .attr("x", 0)
     .attr("y", 0)
     .attr("rx", 15)
     .attr("ry", 15)
     .attr("fill", "white")
-    .attr("stroke", "#00CC66")
-    .style("stroke-width", 3);
+    .attr("stroke", "black")
+    .style("stroke-width", 1);
 
 var legendRow = legend.selectAll(".legendRow")
     .data(types)
     .enter().append("g")
     .attr("class", "legendRow")
     .attr("transform", function(d, i) {
-        return "translate(0, " + (i * 25) + ")";
+        return "translate(0, " + (i * 28) + ")";
     })
 
 legendRow.append("circle")

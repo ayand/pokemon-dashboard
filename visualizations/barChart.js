@@ -1,3 +1,5 @@
+var selectedType = null;
+
 var width = 375;
 var padding = 45;
 var types = ['Normal', 'Fire', 'Fighting', 'Water', 'Flying', 'Grass',
@@ -38,9 +40,9 @@ for (var i = 0; i < types.length; i++) {
     });
 }
 
-var x = d3.scaleBand().range([padding, width - padding])
-var y = d3.scaleLinear().range([width - padding, padding])
-x.domain(types);
+var barX = d3.scaleBand().range([padding, width - padding])
+var barY = d3.scaleLinear().range([width - padding, padding])
+barX.domain(types);
 d3.json("pokemon.json", function(data) {
     for (var i = 0; i < data.length; i++) {
         var firstType = counts.filter(function(d) {
@@ -62,9 +64,9 @@ d3.json("pokemon.json", function(data) {
         return d.count;
     });
 
-    y.domain([0, maxCount]);
-    var xAxis = d3.axisBottom(x);
-    var yAxis = d3.axisLeft(y);
+    barY.domain([0, maxCount]);
+    var xAxis = d3.axisBottom(barX);
+    var yAxis = d3.axisLeft(barY);
     //yAxis.tickValues([0, maxCount]);
 
     var barGraph = d3.select(".barChart")
@@ -75,26 +77,28 @@ d3.json("pokemon.json", function(data) {
     barGraph.append("rect")
         .attr("x", 0)
         .attr("y", 0)
+        .attr("rx", 10)
+        .attr("ry", 10)
         .attr("width", width)
         .attr("height", (width + 20))
         .attr("fill", "white")
-
-
+        .attr("stroke", "black")
 
     var bars = barGraph.selectAll(".bar")
         .data(counts);
 
     bars.enter().append("rect")
+        .attr("class", "bar")
         .attr("x", function(d) {
-            return x(d.type);
+            return barX(d.type);
         })
         .attr("y", function(d) {
             console.log(d["type"] + ": " + d["count"]);
-            return y(d.count);
+            return barY(d.count);
         })
-        .attr("width", x.bandwidth())
+        .attr("width", barX.bandwidth())
         .attr("height", function(d) {
-            return (width - padding) - y(d.count);
+            return (width - padding) - barY(d.count);
         })
         .attr("fill", function(d) {
             return colorKey[d["type"]]
@@ -102,8 +106,33 @@ d3.json("pokemon.json", function(data) {
         })
         .style("cursor", "pointer")
         .on("click", function(d) {
-            console.log(d.type);
-        })
+            console.log("clicking")
+            if (selectedType != d.type) {
+              selectedType = d.type;
+              d3.selectAll(".scatterDot")
+                .style("display", function(dot) {
+                    return (dot.type1 == d.type || dot.type2 == d.type) ? 'block' : 'none';
+                })
+
+              d3.selectAll(".bar")
+                .transition()
+                .duration(1000)
+                .style("opacity", function(bar) {
+                    return (bar == d) ? 1 : 0.2;
+                })
+            } else {
+              selectedType = null;
+
+              d3.selectAll(".scatterDot")
+                .style("display", "block")
+
+              d3.selectAll(".bar")
+                .transition()
+                .duration(1000)
+                .style("opacity", 1)
+            }
+
+          })
 
         barGraph.append("g")
             .attr("class", "x axis")

@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     </head>
     <body>
-        <h1 align="center">Pokemon Dashboard</h1>
+        <h1 align="center" style="color:red; background-color:#333333">Pokemon Dashboard</h1>
 
         <div class="row">
             <div class="col-md-9">
@@ -18,10 +18,13 @@
                 <div align="center" class="col-md-6">
                   <!--Column 2-->
                   <h3 align="center">Offense/Defense Stackup</h3>
+                  <div class="statScatter">
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
+                <br>
                 <h4 align="center">Legend</h4>
                 <div class="legend">
                 </div>
@@ -31,5 +34,6 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="visualizations/barChart.js"></script>
         <script src="visualizations/legend.js"></script>
+        <script src="visualizations/scatterplot.js"></script>
     </body>
 </html>
