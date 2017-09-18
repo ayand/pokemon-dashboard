@@ -1,6 +1,6 @@
 var selectedType = null;
 
-var width = 375;
+var width = 475;
 var padding = 45;
 var types = ['Normal', 'Fire', 'Fighting', 'Water', 'Flying', 'Grass',
     'Poison', 'Electric', 'Ground', 'Psychic', 'Rock', 'Ice', 'Bug', 'Dragon',
@@ -81,8 +81,7 @@ d3.json("pokemon.json", function(data) {
         .attr("ry", 10)
         .attr("width", width)
         .attr("height", (width + 20))
-        .attr("fill", "white")
-        .attr("stroke", "black")
+        .attr("fill", "white");
 
     var bars = barGraph.selectAll(".bar")
         .data(counts);

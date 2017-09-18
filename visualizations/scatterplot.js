@@ -1,4 +1,4 @@
-var width = 375;
+var width = 475;
 var padding = 45;
 
 var scatterX = d3.scaleLinear().range([padding, width - padding])
@@ -25,8 +25,7 @@ scatterPlot.append("rect")
     .attr("ry", 10)
     .attr("width", width)
     .attr("height", (width + 20))
-    .attr("fill", "white")
-    .attr("stroke", "black")
+    .attr("fill", "white");
 
 d3.json("pokemon.json", function(data) {
     var transformedData = data.map(function(d) {

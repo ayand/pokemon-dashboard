@@ -29,18 +29,17 @@ var colorKey = {
 
 var legend = d3.select(".legend")
     .append("svg")
-    .attr("width", 250)
+    .attr("width", 150)
     .attr("height", 515)
 
 legend.append("rect")
-    .attr("width", 250)
+    .attr("width", 150)
     .attr("height", 515)
     .attr("x", 0)
     .attr("y", 0)
     .attr("rx", 15)
     .attr("ry", 15)
     .attr("fill", "white")
-    .attr("stroke", "black")
     .style("stroke-width", 1);
 
 var legendRow = legend.selectAll(".legendRow")
