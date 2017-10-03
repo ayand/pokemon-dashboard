@@ -72,6 +72,8 @@ d3.json("pokemon.json", function(data) {
             return scatterY(d["defense_factor"]);
         })
         .attr("fill", "#115B2A")
+        .style("opacity", 0.5)
+        .style("cursor", "pointer")
         .on("mouseover", function(d) {
             console.log(d.name);
             d3.selectAll(".bar")
@@ -85,7 +87,7 @@ d3.json("pokemon.json", function(data) {
                 .transition()
                 .duration(1000)
                 .style("opacity", function(aDot) {
-                    return (aDot.id === d.id) ? 1 : 0.2;
+                    return (aDot.id === d.id) ? 0.5 : 0.1;
                 })
         })
         .on("mouseout", function(d) {
@@ -102,7 +104,7 @@ d3.json("pokemon.json", function(data) {
             d3.selectAll(".scatterDot")
                 .transition()
                 .duration(1000)
-                .style("opacity", 1)
+                .style("opacity", 0.5)
         });
 
     var equalLineData = [

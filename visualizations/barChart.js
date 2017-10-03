@@ -40,9 +40,15 @@ for (var i = 0; i < types.length; i++) {
     });
 }
 
+var barTip = d3.tip().attr('class', 'd3-tip')
+    .html(function(d) {
+      return "<strong>" + d["type"] + ":</strong><br>Count: " + d["count"];
+    });
+
 var barX = d3.scaleBand().range([padding, width - padding])
 var barY = d3.scaleLinear().range([width - padding, padding])
 barX.domain(types);
+
 d3.json("pokemon.json", function(data) {
     for (var i = 0; i < data.length; i++) {
         var firstType = counts.filter(function(d) {
@@ -82,6 +88,8 @@ d3.json("pokemon.json", function(data) {
         .attr("width", width)
         .attr("height", (width + 20))
         .attr("fill", "white");
+
+    barGraph.call(barTip);
 
     var bars = barGraph.selectAll(".bar")
         .data(counts);
@@ -132,6 +140,8 @@ d3.json("pokemon.json", function(data) {
             }
 
           })
+          .on("mouseover", barTip.show)
+          .on("mouseout", barTip.hide);
 
         barGraph.append("g")
             .attr("class", "x axis")
